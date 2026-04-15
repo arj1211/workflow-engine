@@ -1,0 +1,20 @@
+{
+  "workflowName": "OrderProcessing",
+  "workflowId": "test1",
+  "completedSteps": [
+    "fetch",
+    "inventory",
+    "validate",
+    "process",
+    "notify"
+  ],
+  "contextData": {
+    "notificationSent": "boolean:true",
+    "orderRegion": "string:EU",
+    "processingId": "string:ORD-2024-001",
+    "orderTotal": "double:1500.0",
+    "validationResult": "string:valid",
+    "inventoryStatus": "string:in_stock"
+  },
+  "status": "Completed"
+}

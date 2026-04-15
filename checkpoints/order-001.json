@@ -1,0 +1,19 @@
+{
+  "workflowName": "CrashDemo",
+  "workflowId": "order-001",
+  "completedSteps": [
+    "fetch",
+    "inventory",
+    "validate",
+    "process",
+    "notify"
+  ],
+  "contextData": {
+    "fetched": "string:fetched",
+    "validated": "string:validated",
+    "inventoried": "string:checked",
+    "notified": "string:notified",
+    "processed": "string:processed"
+  },
+  "status": "Completed"
+}

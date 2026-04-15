@@ -7,6 +7,7 @@ lazy val root = (project in file("."))
     name := "SimpleWorkflowEngine",
     libraryDependencies ++= Seq(
       "org.scalameta" %% "munit" % "1.3.0" % Test,
-      "com.lihaoyi" %% "upickle" % "4.4.3"
+      "com.lihaoyi" %% "upickle" % "4.4.3",
+      "com.lihaoyi" %% "cask" % "0.11.3"
     )
   )
