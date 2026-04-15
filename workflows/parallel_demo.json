@@ -1,0 +1,69 @@
+{
+  "name": "ParallelBenchmark",
+  "nodes": [
+    {
+      "id": "start",
+      "stepType": "Timed",
+      "config": {
+        "name": "Start",
+        "durationMs": "100",
+        "outputKey": "startResult",
+        "outputValue": "started"
+      }
+    },
+    {
+      "id": "taskA",
+      "stepType": "Timed",
+      "dependsOn": [
+        "start"
+      ],
+      "config": {
+        "name": "TaskA",
+        "durationMs": "300",
+        "outputKey": "resultA",
+        "outputValue": "done_a"
+      }
+    },
+    {
+      "id": "taskB",
+      "stepType": "Timed",
+      "dependsOn": [
+        "start"
+      ],
+      "config": {
+        "name": "TaskB",
+        "durationMs": "200",
+        "outputKey": "resultB",
+        "outputValue": "done_b"
+      }
+    },
+    {
+      "id": "taskC",
+      "stepType": "Timed",
+      "dependsOn": [
+        "start"
+      ],
+      "config": {
+        "name": "TaskC",
+        "durationMs": "400",
+        "outputKey": "resultC",
+        "outputValue": "done_c"
+      }
+    },
+    {
+      "id": "finish",
+      "stepType": "Timed",
+      "dependsOn": [
+        "taskA",
+        "taskB",
+        "taskC"
+      ],
+      "config": {
+        "name": "Finish",
+        "durationMs": "50",
+        "outputKey": "finalResult",
+        "outputValue": "complete"
+      }
+    }
+  ]
+}

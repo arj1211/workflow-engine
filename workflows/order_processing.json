@@ -1,0 +1,43 @@
+{
+  "name": "OrderProcessing",
+  "nodes": [
+    {
+      "id": "fetch",
+      "stepType": "FetchOrder",
+      "config": {}
+    },
+    {
+      "id": "validate",
+      "stepType": "ValidateOrder",
+      "dependsOn": [
+        "fetch"
+      ],
+      "config": {}
+    },
+    {
+      "id": "inventory",
+      "stepType": "CheckInventory",
+      "dependsOn": [
+        "fetch"
+      ],
+      "config": {}
+    },
+    {
+      "id": "process",
+      "stepType": "ProcessOrder",
+      "dependsOn": [
+        "validate",
+        "inventory"
+      ],
+      "config": {}
+    },
+    {
+      "id": "notify",
+      "stepType": "NotifyCustomer",
+      "dependsOn": [
+        "process"
+      ],
+      "config": {}
+    }
+  ]
+}
