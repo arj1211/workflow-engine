@@ -25,40 +25,36 @@ given ExecutionContext = ExecutionContext.global
   stateStore.clear("order-001")
   CrashTracker.reset()
 
-  // Define a workflow where step "process" will crash
-  val crashKeys = new {
-    val Fetched: TypedKey[String] = TypedKey[String]("fetched")
-    val Validated: TypedKey[String] = TypedKey[String]("validated")
-    val Inventoried: TypedKey[String] = TypedKey[String]("inventoried")
-    val Processed: TypedKey[String] = TypedKey[String]("processed")
-    val Notified: TypedKey[String] = TypedKey[String]("notified")
-  }
-
   val workflow = Workflow(
     name = "CrashDemo",
     nodes = Map(
       "fetch" -> StepNode(
         "fetch",
-        new TimedStep("FetchOrder", 100, crashKeys.Fetched, "fetched")
+        new TimedStep("FetchOrder", 100, CrashDemoKeys.Fetched, "fetched")
       ),
       "validate" -> StepNode(
         "validate",
-        new TimedStep("Validate", 150, crashKeys.Validated, "validated"),
+        new TimedStep("Validate", 150, CrashDemoKeys.Validated, "validated"),
         dependencies = Set("fetch")
       ),
       "inventory" -> StepNode(
         "inventory",
-        new TimedStep("CheckInventory", 200, crashKeys.Inventoried, "checked"),
+        new TimedStep(
+          "CheckInventory",
+          200,
+          CrashDemoKeys.Inventoried,
+          "checked"
+        ),
         dependencies = Set("fetch")
       ),
       "process" -> StepNode(
         "process",
-        new CrashingStep("ProcessOrder", crashKeys.Processed, "processed"),
+        new CrashingStep("ProcessOrder", CrashDemoKeys.Processed, "processed"),
         dependencies = Set("validate", "inventory")
       ),
       "notify" -> StepNode(
         "notify",
-        new TimedStep("Notify", 50, crashKeys.Notified, "notified"),
+        new TimedStep("Notify", 50, CrashDemoKeys.Notified, "notified"),
         dependencies = Set("process")
       )
     )
